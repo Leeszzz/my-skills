@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "fac191ad-addd-4e0a-bbb7-a2c5cac1e425",
+  "path": "stop-slop",
+  "path_key": "stop-slop",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "skillssh",
+    "ref": "hardikpandya/stop-slop/stop-slop",
+    "subpath": null,
+    "branch": null
+  }
+}

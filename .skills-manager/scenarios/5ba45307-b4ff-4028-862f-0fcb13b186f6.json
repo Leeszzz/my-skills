@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "scenario_id": "5ba45307-b4ff-4028-862f-0fcb13b186f6",
+  "name": "通用skills",
+  "description": "Default startup scenario",
+  "icon": "briefcase",
+  "sort_order": 0
+}

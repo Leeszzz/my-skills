@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "74338983-cd23-4add-a279-7d1134540ca1",
+  "path": "officecli-financial-model",
+  "path_key": "officecli-financial-model",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\officecli-financial-model",
+    "branch": "main"
+  }
+}

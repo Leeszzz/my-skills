@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "274558d1-86e5-426b-bc96-323e5d27e056",
+  "path": "web-design-guidelines",
+  "path_key": "web-design-guidelines",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\web-design-guidelines",
+    "branch": "main"
+  }
+}

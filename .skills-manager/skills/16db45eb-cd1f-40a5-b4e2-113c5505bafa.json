@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "16db45eb-cd1f-40a5-b4e2-113c5505bafa",
+  "path": "officecli-data-dashboard",
+  "path_key": "officecli-data-dashboard",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\officecli-data-dashboard",
+    "branch": "main"
+  }
+}

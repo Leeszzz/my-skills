@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "36f2842b-3e20-43b2-9e23-b95c1fa40a2d",
+  "path": "storage-analyzer",
+  "path_key": "storage-analyzer",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/KKKKhazix/khazix-skills",
+    "subpath": "storage-analyzer",
+    "branch": null
+  }
+}

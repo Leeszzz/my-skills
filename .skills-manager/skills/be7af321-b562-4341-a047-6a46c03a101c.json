@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "be7af321-b562-4341-a047-6a46c03a101c",
+  "path": "vitest",
+  "path_key": "vitest",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vitest",
+    "branch": "main"
+  }
+}

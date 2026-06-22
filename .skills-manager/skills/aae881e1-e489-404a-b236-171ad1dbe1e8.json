@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "aae881e1-e489-404a-b236-171ad1dbe1e8",
+  "path": "vitepress",
+  "path_key": "vitepress",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vitepress",
+    "branch": "main"
+  }
+}

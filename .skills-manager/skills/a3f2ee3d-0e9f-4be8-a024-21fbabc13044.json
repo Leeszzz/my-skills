@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "a3f2ee3d-0e9f-4be8-a024-21fbabc13044",
+  "path": "vue-router-best-practices",
+  "path_key": "vue-router-best-practices",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vue-router-best-practices",
+    "branch": "main"
+  }
+}

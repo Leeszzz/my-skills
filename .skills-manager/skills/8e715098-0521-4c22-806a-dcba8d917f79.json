@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "8e715098-0521-4c22-806a-dcba8d917f79",
+  "path": "webapp-testing",
+  "path_key": "webapp-testing",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "skillssh",
+    "ref": "anthropics/skills/webapp-testing",
+    "subpath": "skills\\webapp-testing",
+    "branch": null
+  }
+}

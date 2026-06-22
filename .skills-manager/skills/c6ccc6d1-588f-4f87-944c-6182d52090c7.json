@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "c6ccc6d1-588f-4f87-944c-6182d52090c7",
+  "path": "darwin-skill",
+  "path_key": "darwin-skill",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "skillssh",
+    "ref": "alchaincyf/darwin-skill/darwin-skill",
+    "subpath": null,
+    "branch": null
+  }
+}

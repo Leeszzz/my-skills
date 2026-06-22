@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "5764c4c2-5129-43a9-bd86-ca03b07d0071",
+  "path": "vite",
+  "path_key": "vite",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vite",
+    "branch": "main"
+  }
+}

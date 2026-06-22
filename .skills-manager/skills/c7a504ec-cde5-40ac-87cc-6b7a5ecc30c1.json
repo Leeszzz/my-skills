@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "c7a504ec-cde5-40ac-87cc-6b7a5ecc30c1",
+  "path": "vue",
+  "path_key": "vue",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vue",
+    "branch": "main"
+  }
+}

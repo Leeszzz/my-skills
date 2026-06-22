@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "29f65dde-2220-42b3-bed9-264f9f7a8351",
+  "path": "officecli-xlsx",
+  "path_key": "officecli-xlsx",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\officecli-xlsx",
+    "branch": "main"
+  }
+}

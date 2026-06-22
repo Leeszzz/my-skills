@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "116c7891-79ca-4b12-9f0b-1721cf0aa1ec",
+  "path": "morph-ppt",
+  "path_key": "morph-ppt",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\morph-ppt",
+    "branch": "main"
+  }
+}

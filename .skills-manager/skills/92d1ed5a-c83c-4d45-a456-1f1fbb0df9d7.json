@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "92d1ed5a-c83c-4d45-a456-1f1fbb0df9d7",
+  "path": "vue-testing-best-practices",
+  "path_key": "vue-testing-best-practices",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vue-testing-best-practices",
+    "branch": "main"
+  }
+}

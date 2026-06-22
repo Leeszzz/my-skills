@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "b4ca5df2-1446-4041-98f2-7b5acbbfe19e",
+  "path": "aihot",
+  "path_key": "aihot",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/KKKKhazix/khazix-skills",
+    "subpath": "aihot",
+    "branch": null
+  }
+}

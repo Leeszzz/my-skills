@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "0adcf736-9b4e-47df-8414-b0a64cf56297",
+  "path": "officecli-academic-paper",
+  "path_key": "officecli-academic-paper",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\officecli-academic-paper",
+    "branch": "main"
+  }
+}

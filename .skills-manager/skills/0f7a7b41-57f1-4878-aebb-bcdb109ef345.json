@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "0f7a7b41-57f1-4878-aebb-bcdb109ef345",
+  "path": "pretty-mermaid",
+  "path_key": "pretty-mermaid",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "skillssh",
+    "ref": "imxv/pretty-mermaid-skills/pretty-mermaid",
+    "subpath": null,
+    "branch": null
+  }
+}

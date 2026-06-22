@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "aac1bca1-db4f-4fcb-8db6-44a8956feead",
+  "path": "officecli-pitch-deck",
+  "path_key": "officecli-pitch-deck",
+  "enabled": true,
+  "tags": [
+    "officeCli"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/iOfficeAI/OfficeCLI/tree/main/skills",
+    "subpath": "skills\\officecli-pitch-deck",
+    "branch": "main"
+  }
+}

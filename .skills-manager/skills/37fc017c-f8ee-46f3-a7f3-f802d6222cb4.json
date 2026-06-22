@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "skill_id": "37fc017c-f8ee-46f3-a7f3-f802d6222cb4",
+  "path": "vueuse-functions",
+  "path_key": "vueuse-functions",
+  "enabled": true,
+  "tags": [
+    "前端"
+  ],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/antfu/skills/tree/main/skills",
+    "subpath": "skills\\vueuse-functions",
+    "branch": "main"
+  }
+}
