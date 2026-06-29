@@ -4,6 +4,7 @@
   "skill_id": "c82644c9-548e-4848-9031-548feeb07fce",
   "sort_order": 8,
   "tools": {
+    "antigravity": false,
     "claude_code": false,
     "codebuddy": true,
     "codex": false,

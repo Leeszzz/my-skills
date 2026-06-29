@@ -43,7 +43,7 @@ If in doubt, `view text` after writing and compare character-for-character.
 
 **Incremental execution.** `officecli` mutates the file on every call. Run commands one at a time and check each exit code — a 50-command script that fails at command 3 cascades silently. After any structural op (new style, table, TOC, section break) run `get` on it before stacking more.
 
-**Resident mode is the default**, not an optimization: `officecli open <file>` at the start, `officecli close <file>` at the end — it avoids re-parsing the XML every call. For many paragraphs of one style, use `batch` (one open/save cycle for the whole array).
+**Open/save lifecycle:** `officecli open <file>` at the start, `officecli save <file>` at the end to flush to disk — `save` only writes and leaves the resident warm for follow-up edits; reach for `officecli close <file>` only to release the resident on a one-shot handoff. Both are always safe (never error or lose work). For many paragraphs of one style, use `batch` (one pass for the whole array). **Flush only at the non-officecli boundary:** officecli's own reads always see your edits; run `save`/`close` only before a non-officecli program reads the file (python-docx, Word, a renderer, delivery).
 
 **`$FILE` convention.** All commands use `"$FILE"` — set it once (`FILE="your-doc.docx"`). Never copy a literal `doc.docx` / `review.docx` into output — always substitute your actual target.
 
@@ -85,7 +85,7 @@ Six steps. Every non-trivial build follows this shape.
 2. **Orient.** Existing file: `officecli view "$FILE" outline` — heading tree, section count, whether a TOC / watermark / tracked changes already exist. Never edit blind.
 3. **Build incrementally.** Structural first, content next, formatting last: styles & numbering defs → sections / page setup → headings & body → tables / images / fields / TOC → headers / footers → comments. After each structural op, `get` it back before stacking on top.
 4. **Format to spec.** Explicit heading sizes, spacing, widths, alignment, tabs, list indents — formatting is part of the deliverable, not optional polish.
-5. **Close, then trust structure over cached text.** `officecli close "$FILE"` writes the XML. TOC / PAGE / NUMPAGES / SEQ / PAGEREF fields carry **cached values** that may be stale or empty until a human recalculates (F9 in Word). Confirm fields *exist* (`get --depth 3` finds `<w:fldChar>`) rather than trusting the visible text.
+5. **Save, then trust structure over cached text.** `officecli save "$FILE"` writes the XML. TOC / PAGE / NUMPAGES / SEQ / PAGEREF fields carry **cached values** that may be stale or empty until a human recalculates (F9 in Word). Confirm fields *exist* (`get --depth 3` finds `<w:fldChar>`) rather than trusting the visible text.
 6. **QA — assume there are problems.** You are done after one fix-and-verify cycle finds zero new issues, not when your last command exited 0. See QA.
 
 ## Quick Start
@@ -102,7 +102,7 @@ officecli add "$FILE" /body --type paragraph --prop text="Key Drivers" --prop st
 officecli add "$FILE" /body --type paragraph --prop text="Enterprise renewals, upsell, and a new EMEA region." --prop size=11pt
 officecli add "$FILE" / --type footer --prop type=default --prop size=9pt --prop text="Page " --prop field=page
 officecli set "$FILE" "/footer[1]/p[1]" --prop align=center
-officecli close "$FILE"
+officecli save "$FILE"
 officecli validate "$FILE"
 ```
 
@@ -260,7 +260,7 @@ For any document with 3+ headings:
 officecli add "$FILE" /body --type toc --prop levels="1-3" --prop title="Table of Contents" --prop hyperlinks=true --index 0
 ```
 
-Page numbers render automatically (`--prop pageNumbers=true` toggles them explicitly). Address the TOC directly (1.0.60+): `/toc[1]` or `/tableofcontents` resolve to the first TOC field for `get`/`set`/`remove` without hand-walking XPath.
+Page numbers render automatically (`--prop pageNumbers=true` toggles them explicitly). Address the TOC directly: `/toc[1]` or `/tableofcontents` resolve to the first TOC field for `get`/`set`/`remove` without hand-walking XPath.
 
 **TOC delivery step (mandatory before handoff).** The live TOC field is a placeholder until recalculated. Some viewers populate it on first open; others show the literal `Update field to see table of contents` until the reader recalculates. Pick by recipient:
 
@@ -294,10 +294,10 @@ officecli add "$FILE" /body --type chart --prop chartType=bar --prop title="Reve
 External links go via `hyperlink`:
 
 ```bash
-officecli add "$FILE" "/body/p[2]" --type hyperlink --prop uri="https://example.com" --prop text="our site"
+officecli add "$FILE" "/body/p[2]" --type hyperlink --prop url="https://example.com" --prop text="our site"
 ```
 
-**Internal links** (to a bookmark) use `--prop anchor=bookmarkName` — not a `#fragment` in `uri`:
+**Internal links** (to a bookmark) use `--prop anchor=bookmarkName` — not a `#fragment` in `url`:
 
 ```bash
 officecli add "$FILE" "/body/p[2]" --type hyperlink --prop anchor=chapter1 --prop text="See Chapter 1"
@@ -324,7 +324,7 @@ officecli add "$FILE" /body --type pagebreak --index <N>          # 1. pagebreak
 officecli set "$FILE" "/body/p[<N+1>]" --prop pageBreakBefore=true # 2. on the heading itself
 ```
 
-`--prop break=newPage` (1.0.61+) is a shorter alias for `pageBreakBefore=true` (accepts `newPage|page|nextPage|pageBreak`). Same XML, same belt-and-suspenders rule. Preview with `view html` and count pages.
+`--prop break=newPage` is a shorter alias for `pageBreakBefore=true` (accepts `newPage|page|nextPage|pageBreak`). Same XML, same belt-and-suspenders rule. Preview with `view html` and count pages.
 
 ### Report-level recipes
 
@@ -419,7 +419,7 @@ officecli add "$FILE" /body --type equation --prop formula="\\frac{a}{b} + \\sum
 officecli add "$FILE" "/body/p[3]" --type footnote --prop text="See Appendix A for methodology."
 ```
 
-**Comments and tracked changes.** Bulk accept/reject: `set / --prop accept-changes=all` (or `reject-changes=all`). Locate individual changes with `query ins` and `query del` (`trackedchange` is not a selector). Create tracked changes on a run with `--prop revision.type=ins|del --prop revision.author=…` (`help docx run` for the full `revision.*` set — `format`/`moveFrom`/`moveTo` too). Add a comment: `add "/body/p[4]" --type comment --prop author=… --prop text=…`; reply-thread it with `--prop parentId=N` and mark it resolved with `set "/comments/comment[N]" --prop done=true` (resolve rather than delete to keep the audit trail — `query 'comment[done=false]'` then lists what's still open). Prop schema: `help docx comment` / `help docx run`.
+**Comments and tracked changes.** Bulk accept/reject: `set "$FILE" /revision --prop revision.action=accept` (or `--prop revision.action=reject`); narrow with a selector like `/revision[@author=Alice]` or `/revision[@type=ins]`. Locate individual changes with `query ins` and `query del` (`trackedchange` is not a selector). Create tracked changes on a run with `--prop revision.type=ins|del --prop revision.author=…` (`help docx run` for the full `revision.*` set — `format`/`moveFrom`/`moveTo` too). Add a comment: `add "/body/p[4]" --type comment --prop author=… --prop text=…`; reply-thread it with `--prop parentId=N` and mark it resolved with `set "/comments/comment[N]" --prop done=true` (resolve rather than delete to keep the audit trail — `query 'comment[done=false]'` then lists what's still open). Prop schema: `help docx comment` / `help docx run`.
 
 **Watermark.** `add / --type watermark --prop text="DRAFT" --prop color=BFBFBF --prop opacity=0.8` in one command (default opacity 0.5); `set /watermark --prop opacity=…` adjusts it later.
 
@@ -433,7 +433,7 @@ Three tiers of precision; use the lowest that does the job.
 - **L2 — dotted-attr fallback** (`pbdr.top=`, `ind.left=`, `shd.fill=`, `padding.top=`, `font.size=`): when L1 lacks the knob. Example: `--prop pbdr.bottom="single;6;1F4E79;0"`. Emits schema-valid XML.
 - **L3 — `raw-set` with XML**: last resort, no schema protection. Use for internal hyperlinks, composite fields, and other shapes the typed verbs can't express (see XML appendix).
 
-Borders use the format `style;size;color;space`: `single;4;FF0000;1`. Hex colors never start with `#`: `FF0000`. Scheme color names (`accent1..6`, `dark1`/`dark2`, `light1`/`light2`, `hyperlink`) are accepted anywhere a hex color is (1.0.60+) — prefer hex for stable colors across themes.
+Borders use the format `style;size;color;space`: `single;4;FF0000;1`. Hex colors never start with `#`: `FF0000`. Scheme color names (`accent1..6`, `dark1`/`dark2`, `light1`/`light2`, `hyperlink`) are accepted anywhere a hex color is — prefer hex for stable colors across themes.
 
 ## QA (Required)
 
@@ -445,7 +445,7 @@ Borders use the format `style;size;color;space`: `single;4;FF0000;1`. Hex colors
 2. `officecli view "$FILE" outline` — heading hierarchy (no H1 → H3 skips), TOC presence, section count.
 3. `officecli view "$FILE" text --max-lines 400` — typos, stray `\$`/`\t`/`\n` literals, placeholder tokens.
 4. `officecli validate "$FILE"` — schema check (the Delivery Gate re-runs this on the closed, on-disk file).
-5. **Visual pass — whole document as a contact sheet** (vision-capable agents only — if you cannot interpret images, skip this step: steps 1–4 are your ceiling, and flag the document "not visually verified" at handoff). `officecli view "$FILE" screenshot --grid auto -o /tmp/sheet.png`, then Read it. `--grid auto` tiles **every page** into one image (auto column count; `--grid 4` to force) — you *see* pagination, blank pages, heading rhythm, lopsided margins, and TOC/cover placement, not just the DOM. Windows+Word renders each page through real Word; elsewhere HTML. No headless browser (needs Chrome/Edge/Chromium/Firefox or `playwright`)? Fall back to `view html` and flag cross-page breaks / alignment / rhythm as "not visually verified". Thumbnails only **locate**: confirm any fine call (column alignment, line spacing, indents, dark-on-dark, caption placement) on the suspect page at full resolution with `screenshot --page N` (no `--grid`; real Word on Windows). "validate pass" is not delivery; "looks like a real document" is.
+5. **Visual pass — whole document as a contact sheet** (vision-capable agents only — if you cannot interpret images, skip this step: steps 1–4 are your ceiling, and flag the document "not visually verified" at handoff). `officecli view "$FILE" screenshot --grid auto -o /tmp/sheet.png`, then Read it. `--grid auto` tiles **every page** into one image (auto column count; `--grid 4` to force) — you *see* pagination, blank pages, heading rhythm, lopsided margins, and TOC/cover placement, not just the DOM. Windows+Word renders each page through real Word; elsewhere HTML. If the screenshot fails, fall back to `view html` and flag cross-page breaks / alignment / rhythm as "not visually verified". Thumbnails only **locate**: confirm any fine call (column alignment, line spacing, indents, dark-on-dark, caption placement) on the suspect page at full resolution with `screenshot --page N` (no `--grid`; real Word on Windows). "validate pass" is not delivery; "looks like a real document" is.
 6. If anything failed, fix, then **rerun the full cycle** — one fix commonly creates another problem.
 
 ### Delivery Gate (run before handing off — any failure = REJECT, do NOT deliver)
