@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "6bdd7c75-9142-4cc0-a356-6a05b12c9c05",
+  "path": "smart-search-cli",
+  "path_key": "smart-search-cli",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "import",
+    "ref": null,
+    "subpath": null,
+    "branch": null
+  }
+}
