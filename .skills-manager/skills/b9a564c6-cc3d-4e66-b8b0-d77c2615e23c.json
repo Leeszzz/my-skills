@@ -10,7 +10,7 @@
   "source": {
     "type": "skillssh",
     "ref": "remotion-dev/skills/remotion-best-practices",
-    "subpath": "skills\\remotion",
+    "subpath": "skills\\remotion-best-practices",
     "branch": null
   }
 }
