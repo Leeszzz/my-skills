@@ -9,7 +9,7 @@
     "codebuddy": true,
     "codex": false,
     "cursor": false,
-    "opencode": false,
+    "opencode": true,
     "workbuddy": true
   }
 }
