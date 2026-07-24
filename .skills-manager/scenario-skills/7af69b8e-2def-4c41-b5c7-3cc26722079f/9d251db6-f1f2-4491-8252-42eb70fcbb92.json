@@ -10,7 +10,7 @@
     "codex": false,
     "cursor": false,
     "opencode": true,
-    "pi": true,
+    "pi": false,
     "workbuddy": true
   }
 }
