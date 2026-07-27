@@ -8,7 +8,12 @@
     "claude_code": false,
     "codebuddy": true,
     "codex": false,
+    "command_code": true,
     "cursor": false,
+    "droid": true,
+    "grok": true,
+    "hermes": true,
+    "omp_agent": true,
     "opencode": false,
     "pi": false,
     "workbuddy": true
