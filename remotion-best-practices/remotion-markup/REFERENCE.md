@@ -1,8 +1,7 @@
 ---
 name: remotion-markup
 description: Content, animation and effects best practices
-metadata:
-  tags: remotion, react, markup
+version: 4.0.505
 ---
 
 This is guidance for writing Remotion React Markup.
@@ -94,7 +93,10 @@ export const MyComposition = () => {
     <>
       <Video src={staticFile("video.mp4")} style={{ opacity: 0.5 }} />
       <Audio src={staticFile("audio.mp3")} />
-      <CanvasImage src={staticFile("logo.png")} style={{ width: 100, height: 100 }} />
+      <CanvasImage
+        src={staticFile("logo.png")}
+        style={{ width: 100, height: 100 }}
+      />
       <Video src="https://remotion.media/video.mp4" />
       <AnimatedImage src={staticFile('nyancat.gif')} />
     </>
@@ -121,7 +123,12 @@ export const Empty = () => {
   return (
     <AbsoluteFill
       name="Scene"
-      style={{display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'white'}}
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white'
+      }}
     >
       <Interactive.Div
         name="Title"
@@ -183,8 +190,11 @@ For media, pass the natural duration of the media: `<Video durationInFrames={29.
 Useful for components whose internal clock should start later:
 
 ```tsx
-<Video trimBefore={2 * fps} {/* ... */} /> // Trim away first 2 seconds of footage
-<Sequence trimBefore={10 * fps} {/* ... */} /> // `useCurrenFrame()` for children starts at `10 * fps`
+// Trim away first 2 seconds of footage
+<Video trimBefore={2 * fps} {/* ... */} />
+
+// `useCurrenFrame()` for children starts at `10 * fps`
+<Sequence trimBefore={10 * fps} {/* ... */} />
 ```
 
 ### Fallback
@@ -196,7 +206,7 @@ If a component does not support these props, wrap it in`<Sequence>` from `remoti
 
 ## Maps
 
-See [Remotion Maps](remotion-maps/REFERENCE.md) if wanting to include maps in the video.
+See [Remotion Maps](./remotion-maps/REFERENCE.md) if wanting to include maps in the video.
 
 ## Text highlights and annotations
 
@@ -255,7 +265,7 @@ When needing to visualize audio (spectrum bars, waveforms, bass-reactive effects
 
 ## Maps
 
-For static maps, animated routes and markers, geographic explainers, Mapbox, MapLibre, MapTiler, GeoJSON, or 3D geographic flyovers, load [Remotion Maps](remotion-maps/REFERENCE.md).
+For static maps, animated routes and markers, geographic explainers, Mapbox, MapLibre, MapTiler, GeoJSON, or 3D geographic flyovers, load [Remotion Maps](./remotion-maps/REFERENCE.md).
 
 ## Captions
 
