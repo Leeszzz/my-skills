@@ -8,7 +8,11 @@
     "codebuddy": true,
     "codex": true,
     "cursor": true,
+    "deepseek_harness": true,
+    "kimi": true,
     "opencode": true,
-    "workbuddy": true
+    "pi": true,
+    "workbuddy": true,
+    "zcode": true
   }
 }
