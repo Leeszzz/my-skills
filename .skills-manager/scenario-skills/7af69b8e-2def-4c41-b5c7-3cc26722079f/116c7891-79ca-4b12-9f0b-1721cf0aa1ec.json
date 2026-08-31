@@ -14,9 +14,11 @@
     "droid": true,
     "grok": true,
     "hermes": true,
+    "kimi": true,
     "omp_agent": true,
     "opencode": false,
     "pi": false,
-    "workbuddy": true
+    "workbuddy": true,
+    "zcode": true
   }
 }
