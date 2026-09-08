@@ -2,6 +2,16 @@
 
 Beautiful-Mermaid 提供 15 个精心设计的内置主题，涵盖亮色和暗色方案。每个主题都基于两种核心颜色（背景 `bg` 和前景 `fg`），并可通过可选的丰富色彩进行增强。
 
+## 目录
+
+- [快速选择指南](#快速选择指南)
+- [主题详细说明](#主题详细说明)
+- [自定义主题](#自定义主题)
+- [主题选择决策树](#主题选择决策树)
+- [实用示例](#实用示例)
+- [颜色值速查表](#颜色值速查表)
+- [常见问题](#常见问题)
+
 ## 快速选择指南
 
 ### 亮色主题
@@ -332,8 +342,8 @@ graph TD
 
 只需要两种颜色就能创建美观的主题：
 
-```python
-python render_mermaid.py \
+```bash
+node scripts/render.mjs \
   --input diagram.mmd \
   --output output.svg \
   --bg '#0f0f0f' \
@@ -346,8 +356,8 @@ python render_mermaid.py \
 
 对于更丰富的颜色方案，提供可选的强调色：
 
-```python
-python render_mermaid.py \
+```bash
+node scripts/render.mjs \
   --input diagram.mmd \
   --output output.svg \
   --bg '#0f0f0f' \
@@ -404,7 +414,7 @@ python render_mermaid.py \
 ### 示例 1：在中文文档中使用 Tokyo Night
 
 ```bash
-python render_mermaid.py \
+node scripts/render.mjs \
   --input 架构图.mmd \
   --output 架构图.svg \
   --theme tokyo-night
@@ -413,7 +423,7 @@ python render_mermaid.py \
 ### 示例 2：创建打印友好的图表
 
 ```bash
-python render_mermaid.py \
+node scripts/render.mjs \
   --input diagram.mmd \
   --output diagram.svg \
   --theme zinc-light
@@ -422,7 +432,7 @@ python render_mermaid.py \
 ### 示例 3：批量应用主题
 
 ```bash
-python batch_render.py \
+node scripts/batch.mjs \
   --input-dir ./diagrams \
   --output-dir ./output \
   --format svg \
@@ -432,7 +442,7 @@ python batch_render.py \
 ### 示例 4：自定义企业主题
 
 ```bash
-python render_mermaid.py \
+node scripts/render.mjs \
   --input diagram.mmd \
   --output output.svg \
   --bg '#1a1a1a' \
