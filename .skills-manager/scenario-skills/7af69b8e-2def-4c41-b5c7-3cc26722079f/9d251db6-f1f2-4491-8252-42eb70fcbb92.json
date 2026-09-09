@@ -16,7 +16,7 @@
     "hermes": true,
     "kimi": false,
     "omp_agent": true,
-    "opencode": false,
+    "opencode": true,
     "pi": false,
     "workbuddy": true,
     "zcode": false
