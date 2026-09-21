@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "skill_id": "7a209d8b-c57a-483b-8f24-522e840cfc40",
+  "path": "smart-search-cli-2",
+  "path_key": "smart-search-cli-2",
+  "enabled": true,
+  "tags": [],
+  "source": {
+    "type": "git",
+    "ref": "https://github.com/konbakuyomu/smartsearch/tree/main/skills/smart-search-cli",
+    "subpath": "skills\\smart-search-cli",
+    "branch": "main"
+  }
+}
