@@ -10,7 +10,7 @@
     "codex": false,
     "command_code": true,
     "cursor": false,
-    "deepseek_harness": true,
+    "deepseek_harness": false,
     "droid": true,
     "grok": true,
     "hermes": true,
