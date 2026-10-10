@@ -18,6 +18,7 @@
     "omp_agent": true,
     "opencode": false,
     "pi": false,
+    "trae_cn": true,
     "workbuddy": true,
     "zcode": false
   }
