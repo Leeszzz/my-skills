@@ -4,6 +4,7 @@
   "skill_id": "b3fd9593-772d-4b59-ac53-e84978a8b3c7",
   "sort_order": 0,
   "tools": {
+    "codebuddy": true,
     "deepseek_harness": true,
     "opencode": true
   }
