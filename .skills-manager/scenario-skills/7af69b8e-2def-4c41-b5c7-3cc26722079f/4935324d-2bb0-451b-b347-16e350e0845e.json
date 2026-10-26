@@ -6,7 +6,7 @@
   "tools": {
     "antigravity": false,
     "claude_code": false,
-    "codebuddy": true,
+    "codebuddy": false,
     "codex": false,
     "command_code": true,
     "cursor": false,
