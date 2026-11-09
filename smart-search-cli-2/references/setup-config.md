@@ -84,6 +84,7 @@
 - Use `smart-search setup --non-interactive --jina-key "key"` to let Jina satisfy `web_fetch`; `JINA_RESPOND_WITH=readerlm-v2` also requires `JINA_API_KEY`.
 - Use `smart-search setup --non-interactive --zhipu-mcp-key "key"` only when the user explicitly wants Coding Plan Remote MCP quota.
 - Use `smart-search setup --non-interactive --openai-compatible-api-mode responses` only when a named relay requires `/responses`. The default is `chat-completions` and uses `/chat/completions`; invalid modes fail before setup saves any field.
+- Use `smart-search setup --non-interactive --openai-compatible-api-mode responses --openai-compatible-tools web_search` when the model searches only through the Responses `web_search` tool, such as `gpt-6.1-sol` with an official OpenAI key. Use `web_search_preview` for a relay that only knows the older name. Tools without `responses` mode fail before setup saves any field.
 - Use `smart-search setup --non-interactive --openai-compatible-stream true` only when an OpenAI-compatible relay benefits from SSE streaming for long requests. Default remains false.
 - Use `smart-search setup --non-interactive --openai-compatible-fallback-models "model-a,model-b"` to save ordered OpenAI-compatible backup models for primary model hard failure. These models do not receive a reserved time slice; the primary model keeps the remaining shared main-search budget. `--fallback off` and `search --model MODEL` disable this model fallback for one invocation.
 - Use `smart-search setup --non-interactive --search-timeout 300` or `smart-search config set SMART_SEARCH_TIMEOUT_SECONDS 300` to persist the normal search budget. Invalid non-positive values fail before provider work.
@@ -99,6 +100,7 @@
 - `TINYFISH_SEARCH_API_URL` defaults to `https://api.search.tinyfish.ai`, and `TINYFISH_FETCH_API_URL` defaults to `https://api.fetch.tinyfish.ai`. Both authenticate with the `X-API-Key` header, not a bearer token.
 - `TINYFISH_TIMEOUT_SECONDS` defaults to `60` and covers both TinyFish search and fetch reads.
 - Use `smart-search setup --non-interactive --deepseek-key "key"` to add DeepSeek to `web_search` and `web_fetch` with the same key as the DeepSeek model API. It never satisfies `main_search` or `docs_search`; Jev can select it among the allowed channels.
+- Use `smart-search setup --non-interactive --yuanbao-secret-id "id" --yuanbao-secret-key "key"` to add Yuanbao Search to `web_search` with a Tencent Cloud API key that has Yuanbao Search enabled. It never satisfies `main_search`, `docs_search` or `web_fetch`. `YUANBAO_API_URL` defaults to `https://wsa.tencentcloudapi.com`, and `YUANBAO_TIMEOUT_SECONDS` defaults to `30`.
 - `DEEPSEEK_API_URL` defaults to `https://api.deepseek.com`, and `DEEPSEEK_TIMEOUT_SECONDS` defaults to `60` and covers both DeepSeek search and fetch reads. Each successful DeepSeek request is billed.
 
 ## Provider Failure Cooldown

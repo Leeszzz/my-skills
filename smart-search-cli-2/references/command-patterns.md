@@ -58,6 +58,7 @@ smart-search skills update --all --format json
 smart-search route "React useEffect API docs" --format markdown
 smart-search setup --non-interactive --zhipu-api-url "https://open.bigmodel.cn/api" --zhipu-search-engine "search_std"
 smart-search setup --non-interactive --openai-compatible-api-mode responses
+smart-search setup --non-interactive --openai-compatible-api-mode responses --openai-compatible-tools web_search
 smart-search setup --non-interactive --openai-compatible-stream true
 smart-search setup --non-interactive --openai-compatible-fallback-models "model-a,model-b"
 smart-search setup --non-interactive --anysearch-api-url "https://api.anysearch.com/mcp" --anysearch-key "key"
@@ -71,11 +72,13 @@ smart-search config set XAI_API_KEY "key" --format json
 smart-search config set XAI_MODEL "grok-4-fast" --format json
 smart-search config set XAI_TOOLS "web_search,x_search" --format json
 smart-search config set XAI_REASONING_EFFORT "high" --format json
+smart-search config set XAI_STREAM "true" --format json
 smart-search search "Latest Grok news" --providers xai-responses --stream --format json
 smart-search config set OPENAI_COMPATIBLE_API_URL "https://api.openai.com/v1" --format json
 smart-search config set OPENAI_COMPATIBLE_API_KEY "key" --format json
 smart-search config set OPENAI_COMPATIBLE_MODEL "model-id" --format json
 smart-search config set OPENAI_COMPATIBLE_API_MODE "responses" --format json
+smart-search config set OPENAI_COMPATIBLE_TOOLS "web_search" --format json
 smart-search config set OPENAI_COMPATIBLE_FALLBACK_MODELS "model-a,model-b" --format json
 smart-search config set OPENAI_COMPATIBLE_STREAM "true" --format json
 smart-search config set SMART_SEARCH_TIMEOUT_SECONDS "180" --format json
@@ -98,6 +101,8 @@ smart-search config set TINYFISH_SEARCH_API_URL "https://api.search.tinyfish.ai"
 smart-search config set TINYFISH_FETCH_API_URL "https://api.fetch.tinyfish.ai" --format json
 smart-search config set DEEPSEEK_API_KEY "key" --format json
 smart-search config set DEEPSEEK_API_URL "https://api.deepseek.com" --format json
+smart-search config set YUANBAO_SECRET_ID "id" --format json
+smart-search config set YUANBAO_SECRET_KEY "key" --format json
 smart-search model current --format json
 smart-search doctor --format json
 smart-search doctor --format markdown
